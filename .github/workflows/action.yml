@@ -15,6 +15,6 @@ jobs:
           ls
           pwd
           npm install -f
-          pm2 delete name react
+          pm2 delete react
           pm2 start "npm start" --name react
         
