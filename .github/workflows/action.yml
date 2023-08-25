@@ -58,7 +58,7 @@ jobs:
          cd /home/admin/sonarqube-test
          ls
          cat sonar.sh
-         bash sonar.sh
+         sonar-scanner -v
   
       - name: Completed Deployment
         env:
