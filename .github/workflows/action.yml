@@ -55,11 +55,11 @@ jobs:
 
       - name: Sonar Scanner
         run: |
-          sonar-scanner \
+         sonar-scanner \
           -Dsonar.projectKey=PLuginLive-Stage \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://3.111.120.244:4234 \
-          -Dsonar.token=sqp_b1d5e831d1a14023f4498573afa0c9345e2baf00
+          -Dsonar.token=sqp_96eb21145f32a9f11ba354a4b482e736a5759ef2
   
       - name: Completed Deployment
         env:
