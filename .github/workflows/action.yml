@@ -1,0 +1,63 @@
+name: "Build and Deploy"
+on:
+  push:
+    branches:
+      -  Development 
+jobs:
+   DEV_DEPLOY:
+    runs-on: self-hosted
+    name: login to stage-server
+    steps:      
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Notify on push
+        env:
+          CARD_TITLE: "Github-actions"
+          CARD_SUBTITLE: "Deployment Started"
+          JOB: "${{ github.event.repository.name }}"
+          ENVIRONMENT: "${{ github.ref_name }}"
+          BRANCH: "${{ github.ref_name }}"
+          COMMITTED_BY: "${{ github.actor }}"
+          COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
+        run: | 
+           bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
+           
+      - name: Start Deployment
+        run: |
+          if [[ "Development" == "${{ github.ref_name }}" ]]
+          then
+            ls
+            pwd
+            
+            #APP=admin-node
+            #cd /home/admin/api/$APP  
+            #git stash
+            #git pull
+            #source .env
+            #npm i -f
+            #npx prisma generate
+            #npx prisma migrate deploy
+            #pm2 delete $APP
+            #pm2 start "npm start" --name $APP
+            echo "**************************"
+            echo "$APP-DEPLOYED"
+            echo "**************************"
+          else 
+            #APP=admin-node
+            #ssh -o StrictHostKeyChecking=no admin@testing.pluginlive.com "cd /home/admin/api/$APP && git stash && git pull && source .env && npm i -f && npx prisma generate && npx prisma migrate deploy&& pm2 delete $APP && pm2 start \"npm start\" --name $APP"
+            echo "**************************"
+            echo "$APP DEPLOYED"
+            echo "**************************"
+          fi   
+  
+      - name: Completed Deployment
+        env:
+          CARD_TITLE: "Github-actions"
+          CARD_SUBTITLE: "Deployment Completed"
+          JOB: "Admin Node"
+          ENVIRONMENT: "${{ github.ref_name }}"
+          BRANCH: "${{ github.ref_name }}"
+          COMMITTED_BY: "${{ github.actor }}"
+          COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
+        run:  |
+           bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
