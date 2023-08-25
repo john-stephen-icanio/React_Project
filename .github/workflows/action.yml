@@ -40,11 +40,6 @@ jobs:
             #pm2 delete $APP
             #pm2 start "npm start" --name $APP
             
-            sonar-scanner \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=http://3.111.120.244:4234 \
-            -Dsonar.token=sqp_c89aaf2818f545b32ec5c2fdb54fd324eac53813
-
             
             echo "**************************"
             echo "$APP-DEPLOYED"
@@ -57,6 +52,14 @@ jobs:
             echo "$APP DEPLOYED"
             echo "**************************"
           fi   
+
+      - name: Sonar Scanner
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=PLuginLive-Stage \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=http://3.111.120.244:4234 \
+          -Dsonar.token=sqp_b1d5e831d1a14023f4498573afa0c9345e2baf00
   
       - name: Completed Deployment
         env:
