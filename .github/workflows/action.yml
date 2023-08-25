@@ -27,3 +27,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+      - name: Print Secrets
+        run: |
+          echo "$SONAR_TOKEN"
+          echo "$SONAR_HOST_URL"
+      
