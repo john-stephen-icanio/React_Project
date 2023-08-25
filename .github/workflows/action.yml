@@ -21,18 +21,10 @@ jobs:
           pm2 delete react
           pm2 start "npm start" --name react
 
-      #- name: SonarQube Scan
-       # uses: sonarsource/sonarqube-scan-action@v2  # Use a specific version/tag instead of @master
-
+    
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+       
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-      - name: Print Secrets
-        run: |
-           sonar-scanner \
-           -Dsonar.projectKey=local \
-           -Dsonar.sources=. \
-           -Dsonar.host.url=http://localhost:9000 \
-           -Dsonar.token=sqp_a26fb37caec4762ad6ef794b2b18820f39d8b616
-      
