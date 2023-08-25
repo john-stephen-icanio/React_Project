@@ -55,7 +55,7 @@ jobs:
 
       - name: Sonar Scanner
         run: |
-         cd /home/admin/notifier
+         cd /home/admin/sonarqube-test
          ls
          cat sonar.sh
   
