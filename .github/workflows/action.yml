@@ -57,6 +57,7 @@ jobs:
         run: |
          cd /home/admin/sonarqube-test
          ls
+         pwd
          cat sonar.sh
          bash sonar.sh
       
