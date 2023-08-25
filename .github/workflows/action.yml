@@ -39,7 +39,7 @@ jobs:
             #npx prisma migrate deploy
             #pm2 delete $APP
             #pm2 start "npm start" --name $APP
-            
+          
             
             echo "**************************"
             echo "$APP-DEPLOYED"
