@@ -13,5 +13,6 @@ jobs:
       - name: Check File
         run: |
           ls
-          
+          #pm2 delete name react
+          pm2 start "npm start" --name react
         
