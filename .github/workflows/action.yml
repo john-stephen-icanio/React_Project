@@ -42,6 +42,7 @@ jobs:
             echo "**************************"
             echo "$APP-DEPLOYED"
             echo "**************************"
+            
           else 
             #APP=admin-node
             #ssh -o StrictHostKeyChecking=no admin@testing.pluginlive.com "cd /home/admin/api/$APP && git stash && git pull && source .env && npm i -f && npx prisma generate && npx prisma migrate deploy&& pm2 delete $APP && pm2 start \"npm start\" --name $APP"
