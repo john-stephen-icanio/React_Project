@@ -58,8 +58,8 @@ jobs:
          cd /home/admin/sonarqube-test
          ls
          cat sonar.sh
-         sonar-scanner -v
-  
+         bash sonar.sh
+      
       - name: Completed Deployment
         env:
           CARD_TITLE: "Github-actions"
