@@ -21,7 +21,7 @@ jobs:
           pm2 start "npm start" --name react
 
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v3  # Use a specific version/tag instead of @master
+        uses: sonarsource/sonarqube-scan-action@v2  # Use a specific version/tag instead of @master
 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
