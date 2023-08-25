@@ -3,17 +3,26 @@ on:
   push:
     branches:
       - main
-
+  pull_request:
+    types: [opened, synchronize, reopened] 
+    
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Check File
+
+      - name: Prepare Application
         run: |
           ls
           npm install -f
           pm2 delete react
           pm2 start "npm start" --name react
-        
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v3  # Use a specific version/tag instead of @master
+
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
