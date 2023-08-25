@@ -39,6 +39,13 @@ jobs:
             #npx prisma migrate deploy
             #pm2 delete $APP
             #pm2 start "npm start" --name $APP
+            
+            sonar-scanner \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://3.111.120.244:4234 \
+            -Dsonar.token=sqp_c89aaf2818f545b32ec5c2fdb54fd324eac53813
+
+            
             echo "**************************"
             echo "$APP-DEPLOYED"
             echo "**************************"
