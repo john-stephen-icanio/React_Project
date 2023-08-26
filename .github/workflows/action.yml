@@ -70,7 +70,8 @@ jobs:
 
          cat sonar_scan.log
 
-         grep -in "EXECUTION SUCCESS" sonar_scan.log
+         data=$(grep -i "EXECUTION SUCCESS" sonar_scan.log)
+         echo "Success---------------- $data"
       
       - name: Completed Deployment
         env:
