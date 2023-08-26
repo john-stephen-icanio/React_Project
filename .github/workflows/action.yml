@@ -91,17 +91,7 @@ jobs:
 
          quality_gate_data=$(curl -s "https://sonar.testing.pluginlive.com/api/measures/component?componentKey=Admin-Node-Quality-Check&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density" -u "sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685:")
 
-         bugs=$(echo "$quality_gate_data" | jq -r '.component.measures[] | select(.metric == "bugs").value')
-         vulnerabilities=$(echo "$quality_gate_data" | jq -r '.component.measures[] | select(.metric == "vulnerabilities").value')         
-         code_smells=$(echo "$quality_gate_data" | jq -r '.component.measures[] | select(.metric == "code_smells").value')
-         coverage=$(echo "$quality_gate_data" | jq -r '.component.measures[] | select(.metric == "coverage").value')
-         duplications=$(echo "$quality_gate_data" | jq -r '.component.measures[] | select(.metric == "duplicated_lines_density").value')
-
-         echo "Bugs: $bugs"
-         echo "Vulnerabilities: $vulnerabilities"
-         echo "Code Smells: $code_smells"
-         echo "Coverage: $coverage"
-         echo "Duplications: $duplications"
+         echo "Quality Gate Data:"
 
 
     
