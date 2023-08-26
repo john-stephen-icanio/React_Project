@@ -58,7 +58,7 @@ jobs:
          cd /home/admin/sonarqube-test
          ls
          pwd
-        
+      
          bash sonar.sh
       
       - name: Completed Deployment
