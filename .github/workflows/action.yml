@@ -82,6 +82,7 @@ jobs:
 
          grep -oP 'ce\/task\?id=\K[^"]+' sonar_scan.log
          quality_gate_status=$(curl -s "https://sonar.testing.pluginlive.com/api/qualitygates/project_status?analysisId=$analysis_id" -u "sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685:" | jq -r '.projectStatus.status')
+         echo "$quality_gate_status"
          if [ "$quality_gate_status" == "OK" ]; then
             echo "Quality Gate: Passed"
          else
