@@ -72,6 +72,8 @@ jobs:
         id: quality_gate
         run: |
            echo "::set-output name=quality_gate_status::PASSED"
+
+           echo "Quality Gate Status: ${{ steps.quality_gate.outputs.quality_gate_status }}"
          
          #bash sonar.sh
       
