@@ -79,6 +79,15 @@ jobs:
          echo "$value"
          echo "ICANIO"
          fi
+
+         grep -oP 'ce\/task\?id=\K[^"]+' sonar_scan.log
+         quality_gate_status=$(curl -s "https://sonar.testing.pluginlive.com/api/qualitygates/project_status?analysisId=$analysis_id" -u "sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685:" | jq -r '.projectStatus.status')
+         if [ "$quality_gate_status" == "OK" ]; then
+            echo "Quality Gate: Passed"
+         else
+          echo "Quality Gate: Failed"
+         fi
+
       
       - name: Completed Deployment
         env:
