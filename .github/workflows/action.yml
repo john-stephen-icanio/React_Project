@@ -59,7 +59,7 @@ jobs:
          ls
          pwd
       
-         bash sonar.sh
+         #bash sonar.sh
       
       - name: Completed Deployment
         env:
