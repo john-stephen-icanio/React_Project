@@ -75,7 +75,9 @@ jobs:
 
       - name: Taking Quality Gate Value
         run: |
-          sonar_scan_output="$(grep 'ANALYSIS SUCCESSFUL' $GITHUB_WORKSPACE/sonar-scan.log)"
+          #sonar_scan_output="$(grep 'ANALYSIS SUCCESSFUL' $GITHUB_WORKSPACE/sonar-scan.log)"
+          
+          sonar_scan_output="$(grep -i 'ANALYSIS SUCCESSFUL' $GITHUB_WORKSPACE/sonar-scan.log)"
           if [[ -n "$sonar_scan_output" ]]; then
             echo "SonarQube Scan Succeeded"
             echo "::set-output name=sonar_scan_status::success"
