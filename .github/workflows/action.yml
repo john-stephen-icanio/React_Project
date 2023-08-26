@@ -67,15 +67,19 @@ jobs:
          -Dsonar.sources=. \
          -Dsonar.host.url=https://sonar.testing.pluginlive.com \
          -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685
+        id: sonar_scan
 
       - name: Taking Quality Gate Value
-        id: quality_gate
         run: |
-           echo "::set-output name=quality_gate_status::PASSED"
-
-           echo "Quality Gate Status: ${{ steps.quality_gate.outputs.quality_gate_status }}"
-         
-         #bash sonar.sh
+          sonar_scan_output="$(grep 'ANALYSIS SUCCESSFUL' $GITHUB_WORKSPACE/sonar-scan.log)"
+          if [[ -n "$sonar_scan_output" ]]; then
+            echo "SonarQube Scan Succeeded"
+            echo "::set-output name=sonar_scan_status::success"
+          else
+            echo "SonarQube Scan Failed"
+            echo "::set-output name=sonar_scan_status::failure"
+          fi
+        id: sonar_scan_check
       
       - name: Completed Deployment
         env:
