@@ -71,7 +71,14 @@ jobs:
          cat sonar_scan.log
 
          data=$(grep -i "EXECUTION SUCCESS" sonar_scan.log)
+         value="${data#*: }"
          echo "Success---------------- $data"
+
+         if [[ "EXECUTION SUCCESS" == "$value" ]];
+         then
+         echo "$value"
+         echo "ICANIO"
+         fi
       
       - name: Completed Deployment
         env:
