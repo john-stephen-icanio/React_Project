@@ -69,6 +69,10 @@ jobs:
          -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685
         id: sonar_scan
 
+      - name: List Files in Workspace
+        run: ls $GITHUB_WORKSPACE
+
+
       - name: Taking Quality Gate Value
         run: |
           sonar_scan_output="$(grep 'ANALYSIS SUCCESSFUL' $GITHUB_WORKSPACE/sonar-scan.log)"
