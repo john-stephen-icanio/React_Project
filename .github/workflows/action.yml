@@ -69,7 +69,8 @@ jobs:
          -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685 > sonar_scan.log 2>&1
 
          cat sonar_scan.log
-    
+
+         grep -in "EXECUTION SUCCESS" sonar_scan.log
       
       - name: Completed Deployment
         env:
