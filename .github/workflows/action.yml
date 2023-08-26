@@ -89,7 +89,8 @@ jobs:
           echo "Quality Gate: Failed"
          fi
 
-         quality_gate_data=$(curl -s "https://sonar.testing.pluginlive.com/api/measures/component?componentKey=Admin-Node-Quality-Check&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density" -u "sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685:")
+         quality_gate_data=$(curl -s "https://sonar.testing.pluginlive.com/api/measures/component_tree?component=Admin-Node-Quality-Check&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density" -u "sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685:")
+
 
          echo "Quality Gate Data: $quality_gate_data"
 
