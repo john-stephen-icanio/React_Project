@@ -79,12 +79,12 @@ jobs:
          echo "$value"
          echo "ICANIO"
          fi
-
+  
       - name: Get Quality Gate status
         id: get_qg_status
         run: |
           qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
-          echo "::set-output name=qg_status::$qg_status"
+          echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
 
     
       - name: Completed Deployment
