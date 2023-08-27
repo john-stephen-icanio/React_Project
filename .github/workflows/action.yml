@@ -94,9 +94,15 @@
             echo "Quality Gate Status: $QG_STATUS"
             Result=$QG_STATUS
             echo "$Result"
+
+            if [[ "$Result" == "OK" ]];
+            then
+            echo "Deployment Started"
+            else
+            echo "Deployment Cancled Improve Your Code"
+            fi
+
   
-  
-      
         - name: Completed Deployment
           env:
             CARD_TITLE: "Github-actions"
