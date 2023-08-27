@@ -58,6 +58,8 @@ jobs:
          #cd /home/admin/sonarqube-test
          ls
          pwd
+         cd /home/admin/api/institute-node
+         
          /opt/sonar-scanner/bin/sonar-scanner -v
          
          echo "sanning SonarQube "
