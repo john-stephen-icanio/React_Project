@@ -58,7 +58,7 @@
            #cd /home/admin/sonarqube-test
            ls
            pwd
-           cd /home/admin/api/institute-node
+           cd /home/admin/api/student-node
            
            /opt/sonar-scanner/bin/sonar-scanner -v
            
