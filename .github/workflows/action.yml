@@ -88,6 +88,7 @@ jobs:
 
       - name: Show Quality Gate Status
         run: |
+          echo "Success"
           echo "Quality Gate Status: $QG_STATUS"
 
 
