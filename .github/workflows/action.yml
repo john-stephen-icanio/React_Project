@@ -91,7 +91,7 @@
               #pm2 delete $APP
               #pm2 start "npm start" --name $APP
               bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
-          
+        
             else
               echo "Deployment Cancled Improve Your Code"
               bash /home/admin/sonarqube-test/sonar-notify.sh "$SONAR_TITTLE" "$SUBTITLE" "$JOB" "$COMMITTED_BY" "$MESSAGE" "https://sonar.testing.pluginlive.com/projects"
