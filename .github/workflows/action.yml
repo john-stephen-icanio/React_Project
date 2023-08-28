@@ -1,9 +1,9 @@
- name: "Build and Deploy"
-  on:
+name: "Build and Deploy"
+on:
     push:
       branches:
         -  Development 
-  jobs:
+jobs:
      DEV_DEPLOY:
       runs-on: self-hosted
       name: login to stage-server
