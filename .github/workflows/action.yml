@@ -55,9 +55,6 @@
             fi   
         - name: Sonar Scanner
           run: |
-           #cd /home/admin/sonarqube-test
-           ls
-           pwd
            cd /home/admin/api/student-node
           
            /opt/sonar-scanner/bin/sonar-scanner -v
@@ -69,18 +66,7 @@
            -Dsonar.sources=. \
            -Dsonar.host.url=https://sonar.testing.pluginlive.com \
            -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685 > sonar_scan.log 2>&1
-  
-           cat sonar_scan.log
-  
-           data=$(grep -i "EXECUTION SUCCESS" sonar_scan.log)
-           value="${data#*: }"
-           echo "Success---------------- $data"
-  
-           if [[ "EXECUTION SUCCESS" == "$value" ]];
-           then
-           echo "$value"
-           echo "ICANIO"
-           fi
+           
     
         - name: Get Quality Gate status
           id: get_qg_status
