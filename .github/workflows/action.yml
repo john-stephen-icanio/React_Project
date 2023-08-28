@@ -28,7 +28,7 @@
             if [[ "Development" == "${{ github.ref_name }}" ]]
             then
               ls
-              cd /home/admin/api/institute-node
+              cd /home/admin/api/student-node
               pwd
               git stash
               git pull
@@ -66,6 +66,7 @@
             BRANCH: "${{ github.ref_name }}"
             COMMITTED_BY: "${{ github.actor }}"
             COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}" 
+
           run: |
             title="${{ env.CARD_TITLE }}"
             echo "$title"
