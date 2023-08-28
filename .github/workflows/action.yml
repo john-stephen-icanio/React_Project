@@ -30,13 +30,11 @@
               ls
               pwd
               cd /home/admin/api/student-node
+              pwd
               git stash
               git pull
-              
               /opt/sonar-scanner/bin/sonar-scanner -v
-           
               echo "sanning SonarQube "
-           
               /opt/sonar-scanner/bin/sonar-scanner \
              -Dsonar.projectKey=Admin-Node-Quality-Check \
              -Dsonar.sources=. \
