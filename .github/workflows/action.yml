@@ -84,8 +84,20 @@
             if [[ "$Result" == "OK" ]];
             then
             echo "Deployment Started"
+            
             else
             echo "Deployment Cancled Improve Your Code"
+            env:
+              CARD_TITLE: "Github-actions"
+              CARD_SUBTITLE: "Deployment Completed"
+              JOB: "Admin Node"
+              ENVIRONMENT: "${{ github.ref_name }}"
+              BRANCH: "${{ github.ref_name }}"
+              COMMITTED_BY: "${{ github.actor }}"
+              COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
+            run:  |
+             bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
+  
             fi
 
   
