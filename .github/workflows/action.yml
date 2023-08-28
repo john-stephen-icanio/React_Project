@@ -77,7 +77,7 @@
   
         - name: Show Quality Gate Status
           env:
-            CARD_TITLE: "Github-actions"
+            CARD_TITLE: "SONARQUBE QUALITY GATE"
             CARD_SUBTITLE: "Deployment Started"
             JOB: "${{ github.event.repository.name }}"
             ENVIRONMENT: "${{ github.ref_name }}"
