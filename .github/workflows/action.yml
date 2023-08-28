@@ -28,7 +28,6 @@
             if [[ "Development" == "${{ github.ref_name }}" ]]
             then
               ls
-              pwd
               cd /home/admin/api/student-node
               pwd
               git stash
@@ -54,7 +53,16 @@
           id: get_qg_status
           run: |
             qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
-            echo "QG_STATUS=$qg_status" >> $GITHUB_ENV    
+            echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
+
+          env:
+            CARD_TITLE: "Github-actions"
+            CARD_SUBTITLE: "Deployment Completed"
+            JOB: "Admin Node"
+            ENVIRONMENT: "${{ github.ref_name }}"
+            BRANCH: "${{ github.ref_name }}"
+            COMMITTED_BY: "${{ github.actor }}"
+            COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"   
     
         - name: Show Quality Gate Status
           run: |
@@ -65,8 +73,7 @@
 
             if [[ "$Result" == "OK" ]];
             then
-            echo "Deployment Started"
-            
+              echo "Deployment Started"
               #git stash
               #git pull
               #source .env
@@ -75,25 +82,9 @@
               #npx prisma migrate deploy
               #pm2 delete $APP
               #pm2 start "npm start" --name $APP
-              
-              echo "**************************"
-              echo "$APP-DEPLOYED"
-              echo "**************************"
-            
+              bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
+
             else
-            echo "Deployment Cancled Improve Your Code"
+              echo "Deployment Cancled Improve Your Code"
             fi
 
-
-        - name: Completed Deployment
-          env:
-            CARD_TITLE: "Github-actions"
-            CARD_SUBTITLE: "Deployment Completed"
-            JOB: "Admin Node"
-            ENVIRONMENT: "${{ github.ref_name }}"
-            BRANCH: "${{ github.ref_name }}"
-            COMMITTED_BY: "${{ github.actor }}"
-            COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
-          run:  |
-             bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
-  
