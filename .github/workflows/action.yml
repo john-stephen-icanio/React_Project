@@ -66,8 +66,8 @@
     
         - name: Show Quality Gate Status
           run: |
-            tittle="${{ env.CARD_TITLE }}"
-            echo "$tittle"
+            title="${{ env.CARD_TITLE }}"
+            echo "$title"
             echo "Success"
             echo "Quality Gate Status: $QG_STATUS"
             Result=$QG_STATUS
