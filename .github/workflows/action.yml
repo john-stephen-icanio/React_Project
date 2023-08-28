@@ -76,6 +76,14 @@
 
   
         - name: Show Quality Gate Status
+          env:
+            CARD_TITLE: "Github-actions"
+            CARD_SUBTITLE: "Deployment Started"
+            JOB: "${{ github.event.repository.name }}"
+            ENVIRONMENT: "${{ github.ref_name }}"
+            BRANCH: "${{ github.ref_name }}"
+            COMMITTED_BY: "${{ github.actor }}"
+            COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
           run: |
             echo "Success"
             echo "Quality Gate Status: $QG_STATUS"
@@ -88,6 +96,7 @@
             
             else
             echo "Deployment Cancled Improve Your Code"
+            bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
             fi
 
 
