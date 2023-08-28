@@ -29,6 +29,19 @@
             then
               ls
               pwd
+              cd /home/admin/api/student-node
+              git stash
+              git pull
+              
+              /opt/sonar-scanner/bin/sonar-scanner -v
+           
+              echo "sanning SonarQube "
+           
+              /opt/sonar-scanner/bin/sonar-scanner \
+             -Dsonar.projectKey=Admin-Node-Quality-Check \
+             -Dsonar.sources=. \
+             -Dsonar.host.url=https://sonar.testing.pluginlive.com \
+             -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685 > sonar_scan.log 2>&1
             
               #APP=admin-node
               #cd /home/admin/api/$APP  
@@ -53,37 +66,10 @@
               echo "$APP DEPLOYED"
               echo "**************************"
             fi   
-        - name: Sonar Scanner
-          run: |
-           cd /home/admin/api/student-node
-          
-           /opt/sonar-scanner/bin/sonar-scanner -v
-           
-           echo "sanning SonarQube "
-           
-           /opt/sonar-scanner/bin/sonar-scanner \
-           -Dsonar.projectKey=Admin-Node-Quality-Check \
-           -Dsonar.sources=. \
-           -Dsonar.host.url=https://sonar.testing.pluginlive.com \
-           -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685 > sonar_scan.log 2>&1
-           
-    
-        - name: Get Quality Gate status
-          id: get_qg_status
-          run: |
-            qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
-            echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
 
-  
+
+            
         - name: Show Quality Gate Status
-          env:
-            CARD_TITLE: "SONARQUBE QUALITY GATE"
-            CARD_SUBTITLE: "Deployment Started"
-            JOB: "${{ github.event.repository.name }}"
-            ENVIRONMENT: "${{ github.ref_name }}"
-            BRANCH: "${{ github.ref_name }}"
-            COMMITTED_BY: "${{ github.actor }}"
-            COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
           run: |
             echo "Success"
             echo "Quality Gate Status: $QG_STATUS"
@@ -94,9 +80,9 @@
             then
             echo "Deployment Started"
             
+            
             else
             echo "Deployment Cancled Improve Your Code"
-            bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
             fi
 
 
