@@ -55,6 +55,9 @@
             qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
             echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
             
+            
+    
+        - name: Show Quality Gate Status
           env:
             CARD_TITLE: "Github-actions"
             CARD_SUBTITLE: "Deployment Completed"
@@ -62,9 +65,7 @@
             ENVIRONMENT: "${{ github.ref_name }}"
             BRANCH: "${{ github.ref_name }}"
             COMMITTED_BY: "${{ github.actor }}"
-            COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"   
-    
-        - name: Show Quality Gate Status
+            COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}" 
           run: |
             title="${{ env.CARD_TITLE }}"
             echo "$title"
