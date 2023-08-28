@@ -73,6 +73,7 @@
           run: |
             qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
             echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
+
   
         - name: Show Quality Gate Status
           run: |
@@ -87,7 +88,6 @@
             
             else
             echo "Deployment Cancled Improve Your Code"
-            bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
             fi
 
 
