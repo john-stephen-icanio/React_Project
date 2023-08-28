@@ -86,15 +86,17 @@
             echo "Deployment Started"
             
             else
+            
             echo "Deployment Cancled Improve Your Code"
-            env:
-              CARD_TITLE: "Github-actions"
-              CARD_SUBTITLE: "Deployment Completed"
-              JOB: "Admin Node"
-              ENVIRONMENT: "${{ github.ref_name }}"
-              BRANCH: "${{ github.ref_name }}"
-              COMMITTED_BY: "${{ github.actor }}"
-              COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
+            echo "Deployment Cancelled. Improve Your Code"
+            echo "CARD_TITLE=Github-actions" >> $GITHUB_ENV
+            echo "CARD_SUBTITLE=Deployment Completed" >> $GITHUB_ENV
+            echo "JOB=Admin Node" >> $GITHUB_ENV
+            echo "ENVIRONMENT=${{ github.ref_name }}" >> $GITHUB_ENV
+            echo "BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
+            echo "COMMITTED_BY=${{ github.actor }}" >> $GITHUB_ENV
+            echo "COMMITTED_MESSAGE=${{ github.event.head_commit.message }}" >> $GITHUB_ENV
+
             run:  |
              bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
   
