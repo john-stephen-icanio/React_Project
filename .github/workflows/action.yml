@@ -28,7 +28,7 @@
             if [[ "Development" == "${{ github.ref_name }}" ]]
             then
               ls
-              cd /home/admin/api/institute-node
+              cd /home/admin/api/student-node
               pwd
               git stash
               git pull
@@ -94,6 +94,6 @@
               
             else
               echo "Deployment Cancled Improve Your Code"
-              bash /home/admin/sonarqube-test/sonar-notify.sh "$SONAR_TITTLE" "$SUBTITLE" "$JOB" "$COMMITTED_BY" "$MESSAGE"
+              bash /home/admin/sonarqube-test/sonar-notify.sh "$SONAR_TITTLE" "$SUBTITLE" "$JOB" "$COMMITTED_BY" "$MESSAGE" "https://sonar.testing.pluginlive.com/projects"
             fi
 
