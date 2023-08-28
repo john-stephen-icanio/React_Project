@@ -21,7 +21,7 @@
             COMMITTED_BY: "${{ github.actor }}"
             COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
           run: | 
-             bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE}}"
+             bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
              
         - name: Start Deployment
           run: |
@@ -82,7 +82,7 @@
               #npx prisma migrate deploy
               #pm2 delete $APP
               #pm2 start "npm start" --name $APP
-              bash  /home/admin/sonarqube-test/start.sh "${{ env.CARD_TITLE }}" "${{ env.CARD_SUBTITLE }}" "${{ env.JOB }}" "${{ env.ENVIRONMENT }}" "${{ env.BRANCH }}" "${{ env.COMMITTED_BY }}" "${{ env.COMMITTED_MESSAGE}}"
+              bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
 
             else
               echo "Deployment Cancled Improve Your Code"
