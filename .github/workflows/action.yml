@@ -43,22 +43,6 @@
              -Dsonar.host.url=https://sonar.testing.pluginlive.com \
              -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685 > sonar_scan.log 2>&1
               cat sonar_scan.log
-            
-              #APP=admin-node
-              #cd /home/admin/api/$APP  
-              #git stash
-              #git pull
-              #source .env
-              #npm i -f
-              #npx prisma generate
-              #npx prisma migrate deploy
-              #pm2 delete $APP
-              #pm2 start "npm start" --name $APP
-            
-              
-              echo "**************************"
-              echo "$APP-DEPLOYED"
-              echo "**************************"
               
             else 
               #APP=admin-node
@@ -66,10 +50,14 @@
               echo "**************************"
               echo "$APP DEPLOYED"
               echo "**************************"
-            fi   
+            fi
 
-
-            
+        - name: Get Quality Gate status
+          id: get_qg_status
+          run: |
+            qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
+            echo "QG_STATUS=$qg_status" >> $GITHUB_ENV    
+    
         - name: Show Quality Gate Status
           run: |
             echo "Success"
@@ -81,6 +69,18 @@
             then
             echo "Deployment Started"
             
+              #git stash
+              #git pull
+              #source .env
+              #npm i -f
+              #npx prisma generate
+              #npx prisma migrate deploy
+              #pm2 delete $APP
+              #pm2 start "npm start" --name $APP
+              
+              echo "**************************"
+              echo "$APP-DEPLOYED"
+              echo "**************************"
             
             else
             echo "Deployment Cancled Improve Your Code"
