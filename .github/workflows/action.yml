@@ -3,7 +3,7 @@ on:
     push:
       branches:
         -  Development  
-        
+         
 jobs:  
      DEV_DEPLOY:
       runs-on: self-hosted
