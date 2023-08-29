@@ -102,7 +102,7 @@
               echo "Deployment Started"
               NODE=student-node
               ENV=api
-              cd/home/admin/notifier
+              cd /home/admin/notifier
               pwd
               ls
               bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
