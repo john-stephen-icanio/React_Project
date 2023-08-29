@@ -22,32 +22,22 @@ jobs:
             COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}"
           run: | 
              bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
-             
-        - name: Start Deployment
+
+        - name: Scanning Code
           run: |
-            if [[ "Development" == "${{ github.ref_name }}" ]]
-            then
-              ls
               cd /home/admin/api/student-node
-              pwd
               git stash
               git pull
               /opt/sonar-scanner/bin/sonar-scanner -v
               echo "sanning SonarQube "
               /opt/sonar-scanner/bin/sonar-scanner \
-             -Dsonar.projectKey=demo \
-             -Dsonar.sources=. \
-             -Dsonar.host.url=https://sonar.testing.pluginlive.com \
-             -Dsonar.login=sqp_8fbbec0d85d4cafafb61539234a4d87d34767ef0 > sonar_scan.log 2>&1
-              cat sonar_scan.log
+              -Dsonar.projectKey=demo \
+              -Dsonar.sources=. \
+              -Dsonar.host.url=https://sonar.testing.pluginlive.com \
+              -Dsonar.login=sqp_8fbbec0d85d4cafafb61539234a4d87d34767ef0 > sonar_scan.log 2>&1
+               cat sonar_scan.log
               
-            else 
-              #APP=admin-node
-              #ssh -o StrictHostKeyChecking=no admin@testing.pluginlive.com "cd /home/admin/api/$APP && git stash && git pull && source .env && npm i -f && npx prisma generate && npx prisma migrate deploy&& pm2 delete $APP && pm2 start \"npm start\" --name $APP"
-              echo "**************************"
-              echo "$APP DEPLOYED"
-              echo "**************************"
-            fi
+            
         - name: Get Quality Gate status
           id: get_qg_status
           run: |
@@ -55,8 +45,7 @@ jobs:
             echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
             
             
-    
-        - name: Show Quality Gate Status
+        - name: Taking Quality Gate Status
           env:
             CARD_TITLE: "Github-actions"
             CARD_SUBTITLE: "Deployment Completed"
@@ -71,11 +60,9 @@ jobs:
             MESSAGE: "Please Improve Your Code"
             
           run: |
-            title="${{ env.CARD_TITLE }}"
             echo "Quality Gate Status: $QG_STATUS"
             Result=$QG_STATUS
             echo "$Result"
-            
            
             if [[ "$Result" == "OK" ]];
             then
