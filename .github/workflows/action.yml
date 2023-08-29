@@ -25,7 +25,7 @@ jobs:
 
         - name: Scanning Code
           run: |
-              cd /home/admin/api/student-node
+              cd /home/admin/api/admin-node
               git stash
               git pull
               /opt/sonar-scanner/bin/sonar-scanner -v
