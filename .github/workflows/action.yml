@@ -100,7 +100,7 @@
 
             if [[ "$Result" == "OK" ]];
             then
-              echo "Deployment Started"`
+              echo "Deployment Started"
               sonar_build
               bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
         
