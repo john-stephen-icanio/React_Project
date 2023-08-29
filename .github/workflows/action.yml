@@ -88,7 +88,7 @@
               #npm i -f
               #npx prisma generate
               #npx prisma migrate deploy
-              pm2 psss
+              pm2 ps
               data=$?
               echo "$data"
               #pm2 delete $APP
