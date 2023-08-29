@@ -35,10 +35,10 @@
               /opt/sonar-scanner/bin/sonar-scanner -v
               echo "sanning SonarQube "
               /opt/sonar-scanner/bin/sonar-scanner \
-             -Dsonar.projectKey=Admin-Node-Quality-Check \
+             -Dsonar.projectKey=demo \
              -Dsonar.sources=. \
              -Dsonar.host.url=https://sonar.testing.pluginlive.com \
-             -Dsonar.login=sqp_b62143bffc8a50460f47fad9bb3fe9d44c632685 > sonar_scan.log 2>&1
+             -Dsonar.login=sqp_8fbbec0d85d4cafafb61539234a4d87d34767ef0 > sonar_scan.log 2>&1
               cat sonar_scan.log
               
             else 
@@ -52,7 +52,7 @@
         - name: Get Quality Gate status
           id: get_qg_status
           run: |
-            qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=Admin-Node-Quality-Check' | jq -r '.projectStatus.status')
+            qg_status=$(curl -s -u sqa_04d87e7a3a81659ab63228deecf56103bc44b2bf: 'https://sonar.testing.pluginlive.com/api/qualitygates/project_status?projectKey=demo' | jq -r '.projectStatus.status')
             echo "QG_STATUS=$qg_status" >> $GITHUB_ENV
             
             
