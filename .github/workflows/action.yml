@@ -72,42 +72,17 @@ jobs:
             
           run: |
             title="${{ env.CARD_TITLE }}"
-            echo "$title"
-            echo "Success"
             echo "Quality Gate Status: $QG_STATUS"
             Result=$QG_STATUS
             echo "$Result"
             
-            success_check(){
-              value="$1"
-              echo "$value"
-            }
-  
-            sonar_build(){
-              #git stash
-              #git pull
-              #source .env
-              #npm i -f
-              #npx prisma generate
-              #npx prisma migrate deploy
-              pm2 ps
-              #pm2 delete $APP
-              #pm2 start "npm start" --name $APP
-              status=$?
-              success_check $status
-              #bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
-            }
-
+           
             if [[ "$Result" == "OK" ]];
             then
               echo "Deployment Started"
               NODE=student-node
-              ENV=api
               cd /home/admin/notifier
-              pwd
-              ls
-              bash run.sh $NODE
-              bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
+              bash run.sh $NODE 
     
             else
               echo "Deployment Cancled Improve Your Code"
