@@ -91,7 +91,7 @@
               #npm i -f
               #npx prisma generate
               #npx prisma migrate deploy
-              pm2 pss
+              pm2 ps
               #pm2 delete $APP
               #pm2 start "npm start" --name $APP
               status=$?
@@ -102,7 +102,11 @@
             if [[ "$Result" == "OK" ]];
             then
               echo "Deployment Started"
-              sonar_build
+              APP=api
+              Value=admin-node
+              cd /home/admin/$APP/$value
+              ls
+              
               bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
         
             else
