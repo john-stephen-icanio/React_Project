@@ -91,7 +91,7 @@
               #npm i -f
               #npx prisma generate
               #npx prisma migrate deploy
-              pm2 pssss
+              pm2 ps
               #pm2 delete $APP
               #pm2 start "npm start" --name $APP
               success_check $?
