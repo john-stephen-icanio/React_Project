@@ -55,7 +55,7 @@ jobs:
             COMMITTED_MESSAGE: "${{ github.event.head_commit.message }}" 
             
             SONAR_TITTLE: "Sonar-Qube"
-            SUBTITLE: "Quality Gate Failed"
+            SUBTITLE: "Quality Gate Failed" 
             MESSAGE: "Please Improve Your Code"
             
           run: |
