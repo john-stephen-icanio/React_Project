@@ -106,6 +106,7 @@ jobs:
               cd /home/admin/notifier
               pwd
               ls
+              bash run.sh $NODE
               bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
     
             else
