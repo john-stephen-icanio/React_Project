@@ -69,7 +69,7 @@ jobs:
               NODE=student-node
               cd /home/admin/sonarqube-test
               bash run.sh $NODE 
-    
+     
             else
               echo "Deployment Cancled Improve Your Code"
               bash /home/admin/sonarqube-test/sonar-notify.sh "$SONAR_TITTLE" "$SUBTITLE" "$JOB" "$COMMITTED_BY" "$MESSAGE" "https://sonar.testing.pluginlive.com/projects"
