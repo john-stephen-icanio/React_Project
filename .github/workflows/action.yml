@@ -72,5 +72,5 @@ jobs:
      
             else
               echo "Deployment Cancled Improve Your Code"
-              bash /home/admin/sonarqube-test/sonar-notify.sh "$SONAR_TITTLE" "$SUBTITLE" "$JOB" "$COMMITTED_BY" "$MESSAGE" "https://sonar.testing.pluginlive.com/projects"
+              bash /home/admin/sonarqube-test/sonar-notify.sh "$SONAR_TITTLE" "$SUBTITLE" "$JOB" "$COMMITTED_BY" "$MESSAGE" "https://sonar.testing.pluginlive.com/projects" "https://sonar.testing.pluginlive.com/code?id=demo"
             fi
