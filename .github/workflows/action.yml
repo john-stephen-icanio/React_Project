@@ -67,8 +67,9 @@ jobs:
             then
               echo "Deployment Started"
               NODE=student-node
+              APP=api
               cd /home/admin/sonarqube-test
-              bash run.sh $NODE 
+              bash run.sh $NODE $APP 
      
             else
               echo "Deployment Cancled Improve Your Code"
