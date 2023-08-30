@@ -66,7 +66,7 @@ jobs:
             if [[ "$Result" == "OK" ]];
             then
               echo "Deployment Started"
-              NODE=student-node
+              NODE=admin-node
               APP=api
               cd /home/admin/sonarqube-test
               bash run.sh $APP $NODE 
