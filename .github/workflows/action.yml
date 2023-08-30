@@ -69,7 +69,7 @@ jobs:
               NODE=student-node
               APP=api
               cd /home/admin/sonarqube-test
-              bash run.sh $NODE $APP 
+              bash run.sh $APP $NODE 
      
             else
               echo "Deployment Cancled Improve Your Code"
