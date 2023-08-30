@@ -24,7 +24,7 @@ jobs:
              bash  /home/admin/sonarqube-test/start.sh "$CARD_TITLE" "$CARD_SUBTITLE" "$JOB" "$ENVIRONMENT" "$BRANCH" "$COMMITTED_BY" "$COMMITTED_MESSAGE"
         - name: Scanning Code
           run: |
-              cd /home/admin/api/corporate-node
+              cd /home/admin/api/admin-node
               git stash
               git pull
               /opt/sonar-scanner/bin/sonar-scanner -v
